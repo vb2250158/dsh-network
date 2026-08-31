@@ -7,6 +7,9 @@
 `dsh-network` is an independent DSH Host plugin. It keeps DSH bound to
 `127.0.0.1`, places an authenticated gateway in front of it, and gives every
 Host a persistent `hostId` so clients can merge multiple routes to one Host.
+The gateway rewrites external `Host` and `Origin` headers to the loopback
+upstream authority, so DSH's own same-origin checks continue to protect HTTP
+and WebSocket requests.
 
 ## What it gives you
 

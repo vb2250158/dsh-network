@@ -15,7 +15,7 @@ test("an omitted Cordis state path keeps the secure default", () => {
 async function fixture() {
   const upstream = createServer((request, response) => {
     response.setHeader("content-type", "application/json");
-    response.end(JSON.stringify({ path: request.url, host: request.headers.host, authorization: request.headers.authorization ?? null }));
+    response.end(JSON.stringify({ path: request.url, host: request.headers.host, origin: request.headers.origin ?? null, authorization: request.headers.authorization ?? null }));
   });
   await new Promise((resolve) => upstream.listen(0, "127.0.0.1", resolve));
   const directory = await mkdtemp(join(tmpdir(), "dsh-network-test-"));
@@ -80,6 +80,7 @@ test("one-time ticket pairs a device and authenticated requests reach DSH", asyn
   assert.deepEqual(await proxied.json(), {
     path: "/api/host.describe",
     host: `127.0.0.1:${f.gateway.options.upstreamPort}`,
+    origin: `http://127.0.0.1:${f.gateway.options.upstreamPort}`,
     authorization: null,
   });
 });
