@@ -1,6 +1,6 @@
 {
   "name": "dsh-network",
-  "version": "0.1.0-rc.8.1",
+  "version": "0.1.0-rc.8.2",
   "description": "Secure LAN, Tailnet, and remote connectivity for DeepSeek Harness.",
   "type": "module",
   "main": "./lib/index.js",
@@ -58,9 +58,9 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/baixianger/dsh-network.git"
+    "url": "git+https://github.com/vb2250158/dsh-network.git"
   },
-  "homepage": "https://github.com/baixianger/dsh-network#readme",
+  "homepage": "https://github.com/vb2250158/dsh-network#readme",
   "engines": {
     "node": ">=22"
   },
