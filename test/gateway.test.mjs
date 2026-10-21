@@ -3,7 +3,7 @@ import { once } from "node:events";
 import { createServer } from "node:http";
 import { mkdtemp, readFile } from "node:fs/promises";
 import { connect, createServer as createTcpServer } from "node:net";
-import { tmpdir } from "node:os";
+import { homedir, tmpdir } from "node:os";
 import { join } from "node:path";
 import test from "node:test";
 import { createPairingTicket, DshNetworkGateway } from "../lib/gateway.js";
@@ -11,7 +11,7 @@ import { createPairingTicket, DshNetworkGateway } from "../lib/gateway.js";
 test("an omitted Cordis state path keeps the secure default", () => {
   const gateway = new DshNetworkGateway({ upstreamPort: 1, statePath: undefined });
   assert.equal(typeof gateway.options.statePath, "string");
-  assert.match(gateway.options.statePath, /network\/state\.json$/);
+  assert.equal(gateway.options.statePath, join(process.env.DSH_HOME || join(homedir(), ".dsh"), "network", "state.json"));
 });
 
 async function fixture() {
